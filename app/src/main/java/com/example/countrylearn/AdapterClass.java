@@ -54,7 +54,7 @@ String [] color = {"#D8D8F6","#1e81b0","#44bcd8","#edb879"};
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(v.getContext(),Details.class);
+                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
                 intent.putExtra("obyekt",countryConteyner);
                 v.getContext().startActivity(intent);
             }

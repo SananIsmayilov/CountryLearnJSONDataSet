@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class Details extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity {
 TextView textView;
 CountryConteyner conteyner;
     @Override
@@ -14,7 +14,6 @@ CountryConteyner conteyner;
         setContentView(R.layout.activity_details);
         textView = findViewById(R.id.textViewdetails);
         conteyner = (CountryConteyner) getIntent().getSerializableExtra("obyekt");
-
         textView.setText(conteyner.getName());
     }
 }

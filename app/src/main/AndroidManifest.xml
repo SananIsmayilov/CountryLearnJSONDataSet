@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CountryLearn"
         tools:targetApi="31">
         <activity
-            android:name=".Details"
+            android:name=".DetailsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
