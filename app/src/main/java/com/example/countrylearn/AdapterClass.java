@@ -1,5 +1,7 @@
 package com.example.countrylearn;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +32,7 @@ String [] color = {"#D8D8F6","#1e81b0","#44bcd8","#edb879"};
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecylerAdapter holder, int position) {
+    public void onBindViewHolder(@NonNull RecylerAdapter holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.backs.setBackgroundColor(Color.parseColor(color[position% color.length]));
         Picasso.get().load(countryConteynerArrayList.get(position).flag).into(holder.binding.flag1, new Callback() {
             @Override
@@ -47,6 +49,16 @@ String [] color = {"#D8D8F6","#1e81b0","#44bcd8","#edb879"};
         holder.binding.currency1.setText("Valyuta : " +countryConteynerArrayList.get(position).currency);
         holder.binding.region1.setText("Region : " +countryConteynerArrayList.get(position).region);
         holder.binding.language1.setText("Dil : " +countryConteynerArrayList.get(position).language);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            CountryConteyner countryConteyner = countryConteynerArrayList.get(position);
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(),Details.class);
+                intent.putExtra("obyekt",countryConteyner);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

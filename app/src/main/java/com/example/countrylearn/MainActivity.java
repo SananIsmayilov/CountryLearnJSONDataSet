@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,12 +29,15 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     AdapterClass adapterClass;
     CompositeDisposable compositeDisposable;
+    Animation animation;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //retrofit initialize
         Gson gson = new GsonBuilder().create();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -42,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.rcyc);
+        animation = AnimationUtils.loadAnimation(this,R.anim.anim);
+        recyclerView.setAnimation(animation);
         getData();
     }
 
@@ -64,5 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
+    }
 }
